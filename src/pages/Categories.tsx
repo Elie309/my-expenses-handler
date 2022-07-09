@@ -4,6 +4,7 @@ import CustomButton from "../components/CustomButton";
 import { data } from "../fakedata";
 import Category from '../components/Category/Category';
 import { backgroundColors, CategoryColor, fontColors } from '../utils/Colors';
+import { fontSize } from '../utils/Font';
 
 interface Props { }
 interface State { }
@@ -51,23 +52,21 @@ export default class Categories extends Component<Props, State> {
                     />
                 </View>
 
+                {data.map((item, index) => {
 
+                    return <Category
+                        style={[styles.category, index % 2 === 0 ? { backgroundColor: backgroundColors.darkGrey } : { backgroundColor: backgroundColors.lightGrey }]}
+                        key={index}
+                        title={item.title}
+                        onPress={this.onCategoryPress}
+                        category={item.category}
+                        // TODO: Money should remain onyl item.money because in the database it will be negative
+                        money={item.money}
+                        color={CategoryColor[item.category]}
+                        onEditPress={this.onEditPress}
+                    />
+                })}
 
-                       { data.map((item, index) =>{
-
-                            return <Category
-                                style={[styles.category, index % 2 === 0 ? { backgroundColor: backgroundColors.darkGrey } : { backgroundColor: backgroundColors.lightGrey }]}
-                                key={index}
-                                title={item.title}
-                                onPress={this.onCategoryPress}
-                                category={item.category}
-                                // TODO: Money should remain onyl item.money because in the database it will be negative
-                                money={item.money}
-                                color={CategoryColor[item.category]}
-                                onEditPress={this.onEditPress}
-                            />
-                    })}
-            
             </ScrollView>
         )
     }
@@ -89,7 +88,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: backgroundColors.primary,
         paddingTop: 35,
-        paddingBottom: 20,
+        paddingBottom: 10,
         paddingHorizontal: 20,
     },
     customButton: {
@@ -97,14 +96,14 @@ const styles = StyleSheet.create({
         width: '10%',
     },
     customButtonText: {
-        color: 'white',
-        fontSize: 40,
+        color: fontColors.white,
+        fontSize: fontSize.headerTittle,
         textAlign: "left"
     },
     titleText: {
-        fontSize: 30,
+        fontSize: fontSize.headerTittle,
         fontWeight: 'bold',
-        color: fontColors.primary,
+        color: fontColors.white,
     }
 
 })

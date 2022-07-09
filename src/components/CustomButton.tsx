@@ -5,7 +5,7 @@ interface Props{
     onPress: (e: GestureResponderEvent) => void,
     text?: string,
     element?: JSX.Element,
-    style: StyleProp<ViewStyle>,
+    style?: StyleProp<ViewStyle>,
     textStyle?: StyleProp<TextStyle>,
 }
 

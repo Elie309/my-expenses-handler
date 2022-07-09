@@ -1,6 +1,6 @@
 import { GestureResponderEvent, Image, StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
 import React from 'react'
-import { ECategories } from '../../Enums&Interfaces/ECategory'
+import { CategoryTypes } from '../../Enums&Interfaces/CategoryTypes'
 import CapitlizeFirstLetter from '../../utils/CapitalizeFirstLetter';
 import CustomButton from '../CustomButton';
 import { CategoryColor, fontColors } from '../../utils/Colors';
@@ -9,7 +9,7 @@ interface Props {
   title: String,
   onPress: (e: GestureResponderEvent) => void,
   onEditPress: (e: GestureResponderEvent) => void,
-  category: ECategories;
+  category: CategoryTypes;
   style: StyleProp<ViewStyle>
   money: number;
   color: string;

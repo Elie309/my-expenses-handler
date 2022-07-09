@@ -12,12 +12,7 @@ export default class Transactions extends Component<NativeStackHeaderProps> {
   render() {
     return (
       <View>
-        <Text>Transactions</Text>
-        <CustomButton
-        style={{ backgroundColor: 'red' }}
-          text='Add Transaction'
-          onPress={() => { this.props.navigation.navigate('AddTransaction') }}
-        />
+        <Text> Test </Text>
       </View>
     )
   }
