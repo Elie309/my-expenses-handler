@@ -11,6 +11,7 @@ interface Props {
     dropdownStyle?: ViewStyle;
     dropdownItemStyle?: ViewStyle;
     dropdownItemTextStyle?: TextStyle;
+    dropdownLastItemStyle?: ViewStyle;
 
 }
 
@@ -87,7 +88,7 @@ export default class CustomDropdown extends React.Component<Props, State> {
                 style={
                     [styles.item,
                     this.props.dropdownItemStyle,
-                    this.props.data.length - 1 === index ? styles.lastItem : null
+                    this.props.data.length - 1 === index ? this.props.dropdownLastItemStyle : null
                     ]
                 }
                 onPress={() => this.onItemPress(item)}
@@ -197,12 +198,6 @@ const styles = StyleSheet.create({
     item: {
         paddingHorizontal: 10,
         paddingVertical: 10,
-        borderTopWidth: 1,
-        borderTopColor: backgroundColors.lightGrey,
-    },
-    lastItem: {
-        borderBottomWidth: 1,
-        borderBottomColor: backgroundColors.lightGrey,
     },
     overlay: {
         flex: 1,

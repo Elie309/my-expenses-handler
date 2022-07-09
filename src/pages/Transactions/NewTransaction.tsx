@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import CustomDropdown from '../../components/CustomDropdown';
 import { CategoryLabels, CategoryTypes } from '../../Enums&Interfaces/CategoryTypes';
 import { backgroundColors, fontColors } from '../../utils/Colors';
+import { fontSize } from '../../utils/Font';
 
 interface Transaction {
   Category: String | undefined;
@@ -56,7 +57,11 @@ export default class NewTransaction extends Component<Props, State> {
             })}
           }
           buttonStyle={styles.dropdownButton}
-          buttonTextStyle={styles.dropdownText}
+          buttonTextStyle={styles.dropdownButtonText}
+          dropdownStyle={styles.dropdownStyle}
+          dropdownItemStyle={styles.dropdownItemStyle}
+          dropdownItemTextStyle={styles.dropdownTextStyle}
+
         />
 
         <Text style={styles.text}>Date</Text>
@@ -80,9 +85,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: backgroundColors.lightGrey,
   },
-  dropdownText: {
+  dropdownButtonText: {
     color: fontColors.lightGrey,
     fontSize: 20,
-  }
+  },
+  dropdownStyle: {
+    backgroundColor: backgroundColors.white,
+    width: '100%',    borderRadius: 10,
+
+  },
+  dropdownItemStyle: {},
+  dropdownTextStyle: {
+    color: fontColors.dark,
+    fontSize: fontSize.headerSubtitle,
+    textAlign: 'center',
+  },
 
 });
