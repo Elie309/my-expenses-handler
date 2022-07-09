@@ -3,16 +3,18 @@ import React, { Component } from 'react'
 import CustomDropdown from '../../components/CustomDropdown';
 import { CategoryLabels } from '../../Enums&Interfaces/CategoryTypes';
 import { backgroundColors, fontColors } from '../../utils/Colors';
-import { fontSize } from '../../utils/Font';
+import { NativeStackHeaderProps } from '@react-navigation/native-stack/lib/typescript/src/types';
+import CustomButton from '../../components/CustomButton';
+import styles from '../../styles/styles';
 
-interface Transaction {
-  Category: String | undefined;
-  Date: Date;
-  Money: number;
-  description?: String;
-}
+// interface Transaction {
+//   Category: String | undefined;
+//   Date: Date;
+//   Money: number;
+//   description?: String;
+// }
 
-interface Props { }
+interface Props extends NativeStackHeaderProps { }
 
 interface State {
   dropDownOpen: boolean;
@@ -29,7 +31,7 @@ export default class NewTransaction extends Component<Props, State> {
 
     this.state = {
       dropDownOpen: false,
-      CategoryValue: '',
+      CategoryValue: 'none',
       DateValue: new Date(),
       MoneyValue: 0,
       DescriptionValue: ''
@@ -60,8 +62,17 @@ export default class NewTransaction extends Component<Props, State> {
 
   //#region DatePicker
   renderDatePicker() {
+    const date = this.state.DateValue;
     return (
-      <Text>test</Text>
+      <CustomButton
+        style={internalStyles.datePickerButton}
+        textStyle={internalStyles.datePickerButtonText}
+        text={this.state.DateValue.toDateString()}
+        onPress={() => {
+          this.props.navigation.push('DatePicker')
+        }}
+
+      />
     )
   }
   render() {
@@ -71,45 +82,30 @@ export default class NewTransaction extends Component<Props, State> {
       <ScrollView>
 
         {/* Dropdown */}
-        <Text style={styles.text}>Select a category:</Text>
+        <Text style={styles.heading}>Select a category:</Text>
         {this.renderDropdown()}
 
-        <Text style={styles.text}>Date</Text>
+        <Text style={styles.heading}>Date</Text>
         {this.renderDatePicker()}
-        <Text style={styles.text}>Money</Text>
-        <Text style={styles.text}>Description</Text>
+        <Text style={styles.heading}>Money</Text>
+        <Text style={styles.heading}>Description</Text>
 
       </ScrollView>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 20,
-    marginVertical: 2,
-    color: fontColors.dark,
-    padding: 10,
-    borderRadius: 10,
-  },
-  dropdownButton: {
+const internalStyles = StyleSheet.create({
+  datePickerButton: {
     borderWidth: 1,
     borderColor: backgroundColors.lightGrey,
+    padding: 10,
   },
-  dropdownButtonText: {
+  datePickerButtonText:{
+    textAlign: "center",
     color: fontColors.lightGrey,
     fontSize: 20,
-  },
-  dropdownStyle: {
-    backgroundColor: backgroundColors.white,
-    width: '100%', borderRadius: 10,
+  }
 
-  },
-  dropdownItemStyle: {},
-  dropdownTextStyle: {
-    color: fontColors.dark,
-    fontSize: fontSize.headerSubtitle,
-    textAlign: 'center',
-  },
 
 });

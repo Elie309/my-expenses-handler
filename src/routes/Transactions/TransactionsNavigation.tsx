@@ -5,6 +5,7 @@ import NewTransaction from '../../pages/Transactions/NewTransaction';
 import CustomButton from '../../components/CustomButton';
 import { backgroundColors, fontColors } from '../../utils/Colors';
 import { fontSize } from '../../utils/Font';
+import DatePicker from '../../pages/Other/DatePicker';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +47,15 @@ export default class TransactionsNavigation extends Component {
                     }}
                 />
 
+                <Stack.Screen
+                    name='DatePicker'
+                    component={DatePicker}
+                    options={{
+                        title: 'Date',
+                    }}
+                    
+
+                />
             </Stack.Navigator>
         )
     }
