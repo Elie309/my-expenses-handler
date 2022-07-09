@@ -1,7 +1,7 @@
 import { Text, StyleSheet, ScrollView } from 'react-native'
 import React, { Component } from 'react'
 import CustomDropdown from '../../components/CustomDropdown';
-import { CategoryLabels, CategoryTypes } from '../../Enums&Interfaces/CategoryTypes';
+import { CategoryLabels } from '../../Enums&Interfaces/CategoryTypes';
 import { backgroundColors, fontColors } from '../../utils/Colors';
 import { fontSize } from '../../utils/Font';
 
@@ -38,6 +38,32 @@ export default class NewTransaction extends Component<Props, State> {
   }
 
 
+  //#region Dropdown
+  renderDropdown() {
+    return (
+      <CustomDropdown
+        data={CategoryLabels}
+        onSelect={(item) => {
+          this.setState({
+            CategoryValue: item.value
+          })
+        }}
+        buttonStyle={styles.dropdownButton}
+        buttonTextStyle={styles.dropdownButtonText}
+        dropdownStyle={styles.dropdownStyle}
+        dropdownItemStyle={styles.dropdownItemStyle}
+        dropdownItemTextStyle={styles.dropdownTextStyle}
+      />
+    )
+  }
+  // #endregion
+
+  //#region DatePicker
+  renderDatePicker() {
+    return (
+      <Text>test</Text>
+    )
+  }
   render() {
 
 
@@ -45,26 +71,11 @@ export default class NewTransaction extends Component<Props, State> {
       <ScrollView>
 
         {/* Dropdown */}
-        <Text
-          style={styles.text}
-        >Select a category: </Text>
-
-        <CustomDropdown 
-          data={CategoryLabels}
-          onSelect={(item) => {
-            this.setState({
-              CategoryValue: item.value
-            })}
-          }
-          buttonStyle={styles.dropdownButton}
-          buttonTextStyle={styles.dropdownButtonText}
-          dropdownStyle={styles.dropdownStyle}
-          dropdownItemStyle={styles.dropdownItemStyle}
-          dropdownItemTextStyle={styles.dropdownTextStyle}
-
-        />
+        <Text style={styles.text}>Select a category:</Text>
+        {this.renderDropdown()}
 
         <Text style={styles.text}>Date</Text>
+        {this.renderDatePicker()}
         <Text style={styles.text}>Money</Text>
         <Text style={styles.text}>Description</Text>
 
@@ -91,7 +102,7 @@ const styles = StyleSheet.create({
   },
   dropdownStyle: {
     backgroundColor: backgroundColors.white,
-    width: '100%',    borderRadius: 10,
+    width: '100%', borderRadius: 10,
 
   },
   dropdownItemStyle: {},

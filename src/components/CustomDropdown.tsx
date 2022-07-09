@@ -1,7 +1,6 @@
 import React from 'react';
 import { TextStyle, ViewStyle } from 'react-native';
 import { FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { backgroundColors } from '../utils/Colors';
 
 interface Props {
     data: Array<{ label: string; value: string }>;
