@@ -1,3 +1,4 @@
+
 export const MonthArrayObject: { label: string, value: string, numberOfDays: number }[] = [
     {
         label: 'January',
@@ -7,7 +8,7 @@ export const MonthArrayObject: { label: string, value: string, numberOfDays: num
     {
         label: 'February',
         value: '02',
-        numberOfDays: 28,
+        numberOfDays: new Date().getFullYear() % 4 === 0 ? 29 : 28,
     },
     {
         label: 'March',

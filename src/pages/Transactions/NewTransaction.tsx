@@ -41,7 +41,7 @@ export default class NewTransaction extends Component<Props, State> {
 
 
   //#region Dropdown
-  renderDropdown() {
+  renderCategoryDropdown() {
     return (
       <CustomDropdown
         data={CategoryLabels}
@@ -61,20 +61,23 @@ export default class NewTransaction extends Component<Props, State> {
   // #endregion
 
   //#region DatePicker
-  renderDatePicker() {
+  renderDate() {
+
+    //TODO: TO change this later on for data
     const date = this.state.DateValue;
     return (
       <CustomButton
         style={internalStyles.datePickerButton}
         textStyle={internalStyles.datePickerButtonText}
-        text={this.state.DateValue.toDateString()}
-        onPress={() => {
-          this.props.navigation.push('DatePicker')
-        }}
+        text={`${date.toDateString()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`}
+        onPress={() => { }}
 
       />
     )
   }
+  //#endregion
+
+
   render() {
 
 
@@ -83,10 +86,12 @@ export default class NewTransaction extends Component<Props, State> {
 
         {/* Dropdown */}
         <Text style={styles.heading}>Select a category:</Text>
-        {this.renderDropdown()}
+        {this.renderCategoryDropdown()}
 
         <Text style={styles.heading}>Date</Text>
-        {this.renderDatePicker()}
+        {this.renderDate()}
+
+
         <Text style={styles.heading}>Money</Text>
         <Text style={styles.heading}>Description</Text>
 
